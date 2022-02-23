@@ -25,6 +25,8 @@
     "no-console": "off",
     "no-plusplus": 0,
     "jsx-quotes": [2, "prefer-single"],
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
     "import/extensions": [
         "error",
         "ignorePackages",
@@ -40,7 +42,24 @@
       {
         "extensions": [".tsx"]
       }
-    ]
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*"
+        ],
+        "peerDependencies": true
+      }
+    ],
+    "react/function-component-definition": [
+      0,
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
+    "react/require-default-props": [0, { "forbidDefaultForRequired": false, "ignoreFunctionalComponents": false}]
   },
   "settings": {
     "import/resolver": {
@@ -48,5 +67,17 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      // or whatever matches stories specified in .storybook/main.js
+      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+      "rules": {
+        // example of overriding a rule
+        "storybook/hierarchy-separator": "error",
+        // example of disabling a rule
+        "storybook/default-exports": "off"
+      }
+    }
+  ]
 }
